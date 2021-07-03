@@ -11,7 +11,8 @@ mod_import_ui <- function(id){
   ns <- NS(id)
   tagList(
     fileInput(ns("file1"), "Upload Past Pairings", 
-              accept =".xlsx")
+              accept =".xlsx"),
+    textOutput(ns("status"))
   )
 }
     
@@ -21,6 +22,8 @@ mod_import_ui <- function(id){
 mod_import_server <- function(id, upload){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
+    
+    status = rv(message = "Ready to receive")
     
     #Uploaded a file
     observeEvent(input$file1, {
@@ -42,8 +45,15 @@ mod_import_server <- function(id, upload){
       upload$names = tmp_pairings$names
       upload$past = tmp_pairings$past
       
+      status$message = "Ready to run"
 
   })
+    
+    
+    output$status = renderText(
+      status$message
+    )
   })
+
 }
     

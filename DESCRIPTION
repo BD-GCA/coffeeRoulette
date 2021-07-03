@@ -13,6 +13,7 @@ Imports:
     htmltools,
     jsonlite,
     magrittr,
+    pkgload,
     processx,
     readxl,
     shiny (>= 1.6.0),
