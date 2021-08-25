@@ -62,10 +62,7 @@ roulette = function(names, past, m=2){
   
   past = dplyr::bind_rows(past, 
                    select(this_round, 1:3))
-  # past = dplyr::bind_rows(
-  #  past,
-  #select(pairings$this_round, 1:3) 
-  #  )#
+
   list(names = names,
        this_round = this_round,
        past = past)
