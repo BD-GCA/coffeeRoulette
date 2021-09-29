@@ -56,9 +56,12 @@ roulette = function(names, past, m=2){
     list() %>% 
     setNames(next_date) %>% 
     socialroulette::partitions_to_pairs() %>% 
-    mutate(name_1 = names$Name[id1],
-                  name_2 = names$Name[id2]) %>% 
-    mutate(date = ymd_to_ym(date))
+    #Join name
+    dplyr::left_join(names, by=c("id1" ="id")) %>% 
+    dplyr::rename(name_1 = Name) %>% 
+    dplyr::left_join(names, by=c("id2" ="id")) %>% 
+    dplyr::rename(name_2 = Name)  
+  
   
   past = dplyr::bind_rows(past, 
                    select(this_round, 1:3))
