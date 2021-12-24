@@ -3,3 +3,6 @@
 .Rdata
 .httr-oauth
 .DS_Store
+coffeeRoulette.Rcheck/
+coffeeRoulette*.tar.gz
+coffeeRoulette*.tgz
