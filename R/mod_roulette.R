@@ -29,13 +29,18 @@ mod_roulette_server <- function(id, upload){
   })
 }
     
+floor_month = function(date){
+  lubridate::floor_date(date, "month")
+}
+
 roulette = function(names, past, m=2){
   # Turn past dates into dates
   past_partition = past %>% 
-    mutate(date = paste0(date, "-01") %>% 
-                    as.Date())
+    mutate(date = floor_month(date))
   
-  next_date = max(past_partition$date) + 33 # Always guaranteed to be a day next month
+  next_date = lubridate::ceiling_date(lubridate::today(), "month") # Always guaranteed to be the 1st next month
+  #TODO: make some ui for the case when today() + 1 month is wrong.
+  
   dates = unique(past_partition$date)
   
   past_partition = purrr::map(dates, function(d){
@@ -64,18 +69,9 @@ roulette = function(names, past, m=2){
   
   
   past = dplyr::bind_rows(past, 
-                   select(this_round, 1:3)) %>% 
-    mutate(date = ymd_to_ym(date))
+                   select(this_round, 1:3)) 
 
   list(names = names,
        this_round = this_round,
        past = past)
-  
-  
-}
-
-ymd_to_ym = function(date){
-  date %>% 
-    as.character() %>% 
-    stringr::str_remove("-[0-9]+$")
 }
