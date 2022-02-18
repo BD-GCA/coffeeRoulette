@@ -53,7 +53,7 @@ roulette = function(names, past, m=2){
       select(-name) %>% 
       dplyr::rename(id = value) %>% 
       socialroulette::frame_to_partition() 
-  }) %>% 
+  }) %>%  
     purrr::set_names(dates)
   
   this_round = names %>% 
