@@ -69,7 +69,7 @@ roulette = function(names, past, m=2){
     dplyr::rename(name_2 = Name)  
   
   
-  past = dplyr::bind_rows(past, 
+  past = dplyr::bind_rows(mutate(past, date = as.character(date)), 
                    select(this_round, 1:3)) 
 
   list(names = names,

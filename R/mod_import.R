@@ -33,9 +33,7 @@ mod_import_server <- function(id, upload){
       
       #Load each sheet within the workbook
       sheets = readxl::excel_sheets(path)
-      tmp_pairings = purrr::map(sheets, function(sheet){
-        readxl::read_excel(path, sheet = sheet)
-      })
+      
       #Spec the col types for robust
       # Pass it back to the reactive
       upload$names = readxl::read_excel(path, 
@@ -44,7 +42,6 @@ mod_import_server <- function(id, upload){
       upload$past = readxl::read_excel(path, 
                                 sheet="past",
                                 col_types = c("date", "numeric", "numeric"))
-      tmp_pairings = setNames(tmp_pairings, sheets) #name the list
       
       #TODO: validate input
       
