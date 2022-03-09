@@ -36,14 +36,18 @@ mod_import_server <- function(id, upload){
       tmp_pairings = purrr::map(sheets, function(sheet){
         readxl::read_excel(path, sheet = sheet)
       })
+      #Spec the col types for robust
+      # Pass it back to the reactive
+      upload$names = readxl::read_excel(path, 
+                                 sheet="names",
+                                 col_types = c("numeric", "text"))
+      upload$past = readxl::read_excel(path, 
+                                sheet="past",
+                                col_types = c("date", "numeric", "numeric"))
       tmp_pairings = setNames(tmp_pairings, sheets) #name the list
       
       #TODO: validate input
       
-      # Pass it back to the reactive
-      #tmp_pairings = roulette(tmp_pairings)
-      upload$names = tmp_pairings$names
-      upload$past = tmp_pairings$past
       
       status$message = "Ready to run"
 
