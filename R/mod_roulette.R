@@ -36,6 +36,7 @@ floor_month = function(date){
 roulette = function(names, past, m=2){
   # Turn past dates into dates
   past_partition = past %>% 
+    mutate(date = lubridate::ymd(date)) %>% 
     mutate(date = floor_month(date))
   
   next_date = lubridate::ceiling_date(lubridate::today(), "month") # Always guaranteed to be the 1st next month
@@ -52,7 +53,7 @@ roulette = function(names, past, m=2){
       select(-name) %>% 
       dplyr::rename(id = value) %>% 
       socialroulette::frame_to_partition() 
-  }) %>% 
+  }) %>%  
     purrr::set_names(dates)
   
   this_round = names %>% 

@@ -13,6 +13,7 @@ Imports:
     htmltools,
     hunspell,
     jsonlite,
+    lubridate,
     magrittr,
     pkgload,
     processx,
