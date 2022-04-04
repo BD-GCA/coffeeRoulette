@@ -41,8 +41,7 @@ mod_import_server <- function(id, upload){
                                  col_types = c("numeric", "text"))
       upload$past = readxl::read_excel(path, 
                                 sheet="past",
-                                col_types = c("date", "numeric", "numeric"))
-      
+                                col_types = c("text", "numeric", "numeric")) 
       #TODO: validate input
       
       
