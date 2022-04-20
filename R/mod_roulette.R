@@ -66,10 +66,11 @@ roulette = function(names, past, m=2){
     dplyr::left_join(names, by=c("id1" ="id")) %>% 
     dplyr::rename(name_1 = Name) %>% 
     dplyr::left_join(names, by=c("id2" ="id")) %>% 
-    dplyr::rename(name_2 = Name)  
+    dplyr::rename(name_2 = Name)  %>% 
+    mutate(date = as.Date(date))
   
   
-  past = dplyr::bind_rows(mutate(past, date = as.character(date)), 
+  past = dplyr::bind_rows(mutate(past, date = date), 
                    select(this_round, 1:3)) 
 
   list(names = names,
