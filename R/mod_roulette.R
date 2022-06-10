@@ -71,7 +71,8 @@ roulette = function(names, past, m=2){
   
   
   past = dplyr::bind_rows(mutate(past, date = date), 
-                   select(this_round, 1:3)) 
+                   select(this_round, 1:3)) %>% 
+    mutate(date = as.Date(date))
 
   list(names = names,
        this_round = this_round,

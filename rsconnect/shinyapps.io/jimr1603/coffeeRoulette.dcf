@@ -1,13 +1,13 @@
-name: coffeeroulette
-title:
+name: coffeeRoulette
+title: coffeeRoulette
 username:
 account: jimr1603
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4337214
-bundleId: 5777465
+bundleId: 5996251
 url: https://jimr1603.shinyapps.io/coffeeroulette/
-when: 1649407916.03258
-lastSyncTime: 1649407916.0326
+when: 1654867301.82584
+lastSyncTime: 1654867301.82587
 asMultiple: FALSE
 asStatic: FALSE
